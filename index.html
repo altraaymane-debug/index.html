@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0F3D56">
 <meta name="description" content="أذكاري - أذكار وأدعية وتسبيح في موقع عربي بسيط وسريع.">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.svg">
 <title>أذكاري | اذكر الله يذكرك</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
@@ -128,9 +126,6 @@ window.loginGoogle=()=>signInWithRedirect(auth,provider).catch(e=>{console.error
 window.logoutGoogle=()=>signOut(auth).then(()=>{toast("تم تسجيل الخروج");render()}).catch(console.error);
 getRedirectResult(auth).catch(e=>console.error("Google redirect result:",e));
 onAuthStateChanged(auth,user=>{const s=document.getElementById("authStatus"),b=document.getElementById("logoutBtn");if(s&&user)s.innerHTML="مرحبًا 👋<br><b>"+(user.displayName||"مستخدم أذكاري")+"</b><br><small>"+(user.email||"")+"</small>";if(b)b.style.display=user?"block":"none";});
-</script>
-<script>
-if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(console.error));
 </script>
 </body>
 </html>
