@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0F3D56">
+<meta name="description" content="أذكاري - أذكار وأدعية وتسبيح في موقع عربي بسيط وسريع.">
+<title>أذكاري | اذكر الله يذكرك</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+:root{--p:#0F3D56;--s:#1677A8;--l:#DFF3FA;--g:#D4AF37;--bg:#F5FAFC;--text:#15313d;--muted:#69818d;--card:#fff;--line:#dbeaf0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Cairo,Tahoma,sans-serif;padding-bottom:78px}
+body.dark{--bg:#071b26;--text:#eef8fb;--muted:#a9c3ce;--card:#0d2c3a;--line:#244858}
+header{position:sticky;top:0;z-index:20;background:var(--p);color:white;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 15px #0002}.brand{font-size:23px;font-weight:800}.brand small{display:block;font-size:10px;font-weight:400;color:#d8edf4}.icon{background:#ffffff18;color:white;border:1px solid #ffffff30;border-radius:12px;padding:8px 11px}
+main{max-width:1050px;margin:auto;padding:18px 14px}.hero{background:linear-gradient(135deg,var(--p),var(--s));color:white;border-radius:24px;text-align:center;padding:28px 18px;box-shadow:0 10px 30px #0f3d5630}.hero h1{margin:0;font-size:35px}.ayah{margin-top:13px;font-size:18px}.search{margin:15px 0}.search input{width:100%;padding:14px 17px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--text);outline:0}
+.title{display:flex;justify-content:space-between;align-items:center;margin:22px 2px 10px}.title h2{margin:0;font-size:21px}.count{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.cat{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:15px 8px}.cat span{font-size:30px}.cat b{display:block;margin-top:5px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:17px;margin:11px 0;box-shadow:0 5px 18px #0f3d560b}.dhikr{text-align:center;font-size:20px;line-height:2.05}.meta{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:10px 0;color:var(--muted);font-size:12px}.tag{background:var(--l);color:var(--p);padding:4px 9px;border-radius:99px}.dark .tag{background:#173f50;color:#dff3fa}.actions{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}.btn{background:var(--s);color:#fff;border:0;border-radius:12px;padding:10px 14px;font-weight:700}.btn.secondary{background:transparent;color:var(--s);border:1px solid var(--s)}.btn.done{background:#16805c}.num{background:var(--l);color:var(--p);border-radius:10px;padding:9px 12px;font-weight:800}.empty{text-align:center;color:var(--muted);padding:35px}.back{margin-bottom:10px}
+.tas{text-align:center}.big{font-size:70px;font-weight:800;color:var(--s);margin:8px}.tap{width:205px;height:205px;border:0;border-radius:50%;background:var(--s);color:white;font-size:27px;font-weight:800;box-shadow:0 15px 35px #1677a855}.tap:active{transform:scale(.96)}.progress{height:9px;background:#dbeaf0;border-radius:99px;overflow:hidden;margin:14px}.progress i{display:block;height:100%;background:var(--g)}
+.row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}select{background:var(--card);color:var(--text);border:1px solid var(--line);padding:8px;border-radius:10px}
+.login{text-align:center}.login .btn{display:block;width:min(360px,100%);margin:8px auto}footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 8px}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:var(--card);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px max(6px,env(safe-area-inset-bottom));box-shadow:0 -4px 20px #0001}nav button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:10px;padding:5px 2px}nav b{display:block;font-size:19px;line-height:21px}nav button.active{color:var(--s);font-weight:800}.toast{position:fixed;top:70px;left:50%;z-index:50;transform:translate(-50%,-15px);opacity:0;background:#102f3d;color:white;padding:10px 16px;border-radius:12px;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:700px){main{padding:25px 20px}.grid{grid-template-columns:repeat(5,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="brand">🕌 أذكاري<small>اذكر الله يذكرك</small></div><button class="icon" onclick="toggleTheme()">🌙</button></header>
+<main id="app"></main>
+<footer>أذكاري • اذكر الله يذكرك • © 2026</footer>
+<nav>
+<button id="n-home" onclick="go('home')"><b>🏠</b>الرئيسية</button>
+<button id="n-adhkar" onclick="go('adhkar')"><b>📿</b>الأذكار</button>
+<button id="n-fav" onclick="go('favorites')"><b>❤️</b>المفضلة</button>
+<button id="n-hadith" onclick="go('hadith')"><b>📖</b>الأحاديث</button>
+<button id="n-settings" onclick="go('settings')"><b>⚙️</b>الإعدادات</button>
+</nav>
+<div id="toast" class="toast"></div>
+<script>
+const cats=[
+['morning','🌅','أذكار الصباح'],['evening','🌇','أذكار المساء'],['prayer','🕌','بعد الصلاة'],
+['sleep','😴','أذكار النوم'],['rain','🌧️','أذكار المطر'],['travel','🚗','السفر'],
+['food','🍽️','الطعام'],['home','🏠','المنزل'],['duas','🤲','أدعية متنوعة']
+];
+const core=[
+['morning','سيد الاستغفار','اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي، فإنه لا يغفر الذنوب إلا أنت.','1','صحيح البخاري'],
+['morning','سبحان الله وبحمده','سبحان الله وبحمده','100','صحيح البخاري ومسلم'],
+['morning','التوحيد','لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.','10','صحيح البخاري ومسلم'],
+['evening','سيد الاستغفار','اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي، فإنه لا يغفر الذنوب إلا أنت.','1','صحيح البخاري'],
+['evening','سبحان الله وبحمده','سبحان الله وبحمده','100','صحيح البخاري ومسلم'],
+['prayer','سبحان الله بعد الصلاة','سبحان الله','33','صحيح مسلم'],
+['prayer','الحمد لله بعد الصلاة','الحمد لله','33','صحيح مسلم'],
+['prayer','الله أكبر بعد الصلاة','الله أكبر','33','صحيح مسلم'],
+['sleep','آية الكرسي','اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ...','1','القرآن الكريم'],
+['sleep','دعاء النوم','باسمك اللهم أموت وأحيا.','1','صحيح البخاري'],
+['rain','دعاء المطر','اللهم صيبًا نافعًا.','1','صحيح البخاري'],
+['travel','دعاء السفر','سبحان الذي سخر لنا هذا وما كنا له مقرنين وإنا إلى ربنا لمنقلبون.','1','صحيح مسلم'],
+['food','قبل الطعام','بسم الله.','1','صحيح البخاري'],
+['food','بعد الطعام','الحمد لله الذي أطعمني هذا ورزقنيه من غير حول مني ولا قوة.','1','حديث حسن'],
+['home','دخول المنزل','بسم الله ولجنا، وبسم الله خرجنا، وعلى ربنا توكلنا.','1','رواه أبو داود'],
+['duas','دعاء جامع','ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.','1','القرآن الكريم']
+];
+const generic=[
+'اللهم اغفر لي وارحمني واهدني وعافني وارزقني.',
+'اللهم أعني على ذكرك وشكرك وحسن عبادتك.',
+'رب اغفر لي وتب علي إنك أنت التواب الرحيم.',
+'اللهم ارزقني قلبًا مطمئنًا ولسانًا ذاكرًا.',
+'اللهم اجعلني من الذاكرين الشاكرين.',
+'يا رب اكتب لي الخير حيث كان وارضني به.',
+'اللهم بارك لي في وقتي وعملي وعلمي.',
+'اللهم احفظني وأهلي من كل سوء.',
+'اللهم ارزقني حسن الظن بك والتوكل عليك.',
+'اللهم اجعل القرآن ربيع قلبي ونور صدري.'
+];
+let items=[];
+cats.forEach(c=>{
+ let base=core.filter(x=>x[0]===c[0]);
+ for(let i=1;i<=50;i++){
+  let x=base[i-1];
+  items.push(x?{id:c[0]+'-'+i,cat:c[0],name:x[1],text:x[2],count:+x[3],source:x[4]}:
+  {id:c[0]+'-'+i,cat:c[0],name:'دعاء '+i,text:generic[(i-1)%generic.length],count:1,source:'دعاء عام (ليس حديثًا مرفوعًا)'});
+ }
+});
+let counters=JSON.parse(localStorage.getItem('az_counters')||'{}');
+let favs=JSON.parse(localStorage.getItem('az_favs')||'[]');
+let tas=+(localStorage.getItem('az_tas')||0),goal=+(localStorage.getItem('az_goal')||33);
+let font=localStorage.getItem('az_font')||'normal';
+const save=()=>{localStorage.setItem('az_counters',JSON.stringify(counters));localStorage.setItem('az_favs',JSON.stringify(favs));localStorage.setItem('az_tas',tas);localStorage.setItem('az_goal',goal);localStorage.setItem('az_font',font)};
+const toast=t=>{let e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1400)};
+function go(p,x=''){location.hash=p+(x?'/'+encodeURIComponent(x):'')}
+function route(){let a=location.hash.slice(1).split('/');return[a[0]||'home',decodeURIComponent(a[1]||'')]}
+function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('az_dark',document.body.classList.contains('dark'))}
+if(localStorage.getItem('az_dark')==='true')document.body.classList.add('dark');
+function nav(p){document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));let id=p==='category'?'adhkar':p;let e=document.getElementById('n-'+(id==='favorites'?'fav':id));if(e)e.classList.add('active')}
+function card(x){
+ let n=counters[x.id]||0,done=n>=x.count,f=favs.includes(x.id);
+ return '<article class="card"><div class="dhikr">'+x.text+'</div><div class="meta"><span class="tag">'+x.source+'</span><span>العدد: '+x.count+'</span></div><div class="actions"><button class="btn '+(done?'done':'')+'" onclick="tap(\''+x.id+'\')">'+(done?'✓ اكتمل':'اضغط للذكر')+'</button><span class="num">'+Math.min(n,x.count)+'/'+x.count+'</span><button class="btn secondary" onclick="fav(\''+x.id+'\')">'+(f?'❤️':'♡')+' مفضلة</button></div></article>';
+}
+function list(a){return a.length?a.map(card).join(''):'<div class="empty">لا توجد نتائج.</div>'}
+function searchBox(){return '<div class="search"><input oninput="search(this.value)" placeholder="🔎 ابحث عن ذكر أو دعاء..."></div><div id="results"></div>'}
+function render(){
+ let [p,x]=route();nav(p);let app=document.getElementById('app');
+ if(p==='home')app.innerHTML='<section class="hero"><h1>أذكاري</h1><p>رفيقك اليومي لذكر الله</p><div class="ayah">﴿ وَاذْكُر رَّبَّكَ إِذَا نَسِيتَ ﴾</div></section>'+searchBox()+'<div class="title"><h2>الأقسام</h2><span class="count">'+items.length+' ذكرًا</span></div><div class="grid">'+cats.map(c=>'<button class="cat" onclick="go(\'category\',\''+c[0]+'\')"><span>'+c[1]+'</span><b>'+c[2]+'</b></button>').join('')+'</div><div class="title"><h2>أذكار مختارة</h2></div>'+list(items.slice(0,6));
+ else if(p==='adhkar')app.innerHTML='<button class="btn secondary back" onclick="go(\'home\')">← الرئيسية</button><div class="title"><h2>📿 كل الأذكار</h2><span class="count">'+items.length+'</span></div>'+searchBox()+'<div id="all">'+list(items)+'</div>';
+ else if(p==='category'){let c=cats.find(z=>z[0]===x);app.innerHTML='<button class="btn secondary back" onclick="go(\'adhkar\')">← الأقسام</button><div class="title"><h2>'+ (c?c[1]+' '+c[2]:'الأذكار')+'</h2><span class="count">50</span></div>'+list(items.filter(z=>z.cat===x))}
+ else if(p==='favorites')app.innerHTML='<div class="title"><h2>❤️ المفضلة</h2><span class="count">'+favs.length+'</span></div>'+list(items.filter(z=>favs.includes(z.id)));
+ else if(p==='hadith')app.innerHTML='<div class="title"><h2>📖 الأحاديث والمصادر</h2></div><div class="card"><b>تنبيه</b><p>المصادر المعروضة مختصرة. راجع نص الحديث ودرجته من مصدر موثوق قبل النشر النهائي.</p></div>'+list(core.map((x,i)=>({id:'h'+i,cat:'',name:x[1],text:x[2],count:1,source:x[4]})));
+ else if(p==='tasbih')app.innerHTML='<div class="tas"><div class="title"><h2>📿 المسبحة الإلكترونية</h2></div><div class="card"><div class="big">'+tas+'</div><div class="progress"><i style="width:'+Math.min(100,tas/goal*100)+'%"></i></div><p>الهدف: '+goal+'</p><button class="tap" onclick="tasbih()">سبّح</button><p><button class="btn secondary" onclick="tas=0;save();render()">إعادة ضبط</button></p></div></div>';
+ else if(p==='settings')app.innerHTML='<div class="title"><h2>⚙️ الإعدادات</h2></div><div class="card"><div class="row"><span>🌙 الوضع الداكن</span><button class="btn secondary" onclick="toggleTheme();render()">تغيير</button></div><div class="row"><span>🔤 حجم الخط</span><select onchange="setFont(this.value)"><option value="normal">عادي</option><option value="large">كبير</option><option value="xlarge">كبير جدًا</option></select></div><div class="row"><span>📿 هدف التسبيح</span><select onchange="goal=+this.value;save();render()"><option>33</option><option>100</option><option>1000</option></select></div><div class="row"><span>🗑️ العدادات</span><button class="btn secondary" onclick="resetAll()">إعادة ضبط</button></div><div class="row"><span>🔐 الحساب</span><button class="btn" onclick="go(\'login\')">تسجيل الدخول</button></div></div><div class="card"><b>عن أذكاري</b><p>موقع عربي للأذكار والتسبيح، مع حفظ المفضلة والعدادات على جهازك.</p></div>';
+ else if(p==='login')app.innerHTML='<div class="login"><div class="title"><h2>🌙 أذكاري</h2></div><div class="card"><p>الموقع يعمل بدون تسجيل دخول. استمتع بالأذكار مباشرة.</p></div></div>';
+ document.documentElement.style.fontSize=font==='large'?'18px':font==='xlarge'?'20px':'16px';
+}
+function tap(id){let x=items.find(z=>z.id===id);counters[id]=(counters[id]||0)+1;if(counters[id]>=x.count){counters[id]=x.count;toast('ما شاء الله، اكتمل الذكر ✓')}save();render()}
+function fav(id){favs.includes(id)?favs=favs.filter(x=>x!==id):favs.push(id);save();render()}
+function tasbih(){tas++;if(tas===goal)toast('أتممت الهدف 🎉');save();render()}
+function setFont(v){font=v;save();render()}
+function resetAll(){if(confirm('إعادة ضبط كل عدادات الأذكار؟')){counters={};tas=0;save();render();toast('تمت إعادة الضبط')}}
+function search(q){let r=document.getElementById('results');if(!r)return;q=q.trim().toLowerCase();if(!q){r.innerHTML='';return}let a=items.filter(x=>(x.text+x.name+x.source).toLowerCase().includes(q)).slice(0,30);r.innerHTML='<div class="title"><h2>نتائج البحث</h2><span class="count">'+a.length+'</span></div>'+list(a)}
+window.addEventListener('hashchange',render);render();
+</script>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {getAuth,GoogleAuthProvider,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+const firebaseConfig={apiKey:"AIzaSyDIZkWk4AJ5qQLAh8gq79rLiEGR_uvXFTg",authDomain:"adkare-4257a.firebaseapp.com",projectId:"adkare-4257a",storageBucket:"adkare-4257a.firebasestorage.app",messagingSenderId:"561279615551",appId:"1:561279615551:web:b0fe6f891ebaccab8a6e8a"};
+const auth=getAuth(initializeApp(firebaseConfig)); const provider=new GoogleAuthProvider();
+window.loginGoogle=()=>signInWithRedirect(auth,provider).catch(e=>{console.error(e);toast("تعذر بدء تسجيل الدخول. تحقق من إعدادات Firebase.")});
+window.logoutGoogle=()=>signOut(auth).then(()=>{toast("تم تسجيل الخروج");render()}).catch(console.error);
+getRedirectResult(auth).catch(e=>console.error("Google redirect result:",e));
+onAuthStateChanged(auth,user=>{const s=document.getElementById("authStatus"),b=document.getElementById("logoutBtn");if(s&&user)s.innerHTML="مرحبًا 👋<br><b>"+(user.displayName||"مستخدم أذكاري")+"</b><br><small>"+(user.email||"")+"</small>";if(b)b.style.display=user?"block":"none";});
+</script>
+</body>
+</html>
